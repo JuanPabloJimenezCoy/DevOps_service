@@ -13,7 +13,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'snyk-token', variable: 'TOKEN')]) {
                     bat 'npx snyk auth %TOKEN%'
-                    bat 'npx snyk test'
+                    bat 'npx snyk test --all-projects'
                 }
             }
         }
