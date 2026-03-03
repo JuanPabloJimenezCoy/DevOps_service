@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
   res.send(`
     <html>
       <head>
-        <title>VAMKO</title>
+        <title>VAMCO</title>
         <style>
           body {
             font-family: Arial;
