@@ -11,8 +11,8 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "express": "^4.21.2",
-    "lodash": "^4.17.23", 
+    "express": "^4.22.1",
+    "lodash": "^4.18.1", 
     "minimist": "^0.2.4",
     "mysql": "^2.18.1"
   }
