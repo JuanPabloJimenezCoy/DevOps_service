@@ -34,6 +34,14 @@ pipeline {
             }
         }
 
+        stage('Terraform Plan') {
+            steps {
+                dir('infra') {
+                    bat 'terraform plan'
+                }
+            }
+        }
+
         stage('Listo para deploy') {
             steps {
                 echo 'Infraestructura validada. Lista para AWS.'
