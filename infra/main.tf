@@ -57,3 +57,7 @@ resource "aws_instance" "mi_servidor" {
     Name = "mi-app-node"
   }
 }
+
+output "public_ip" {
+  value = aws_instance.mi_servidor.public_ip
+}
