@@ -50,7 +50,7 @@ resource "aws_instance" "mi_servidor" {
               cd DevOps_service
               npm install
 
-              nohup node servicio-vulnerable/app.js > app.log 2>&1 &
+              nohup node servicio-vulnerable/server.js > app.log 2>&1 &
               EOF
 
   tags = {
