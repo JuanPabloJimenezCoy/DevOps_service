@@ -35,6 +35,8 @@ resource "aws_instance" "mi_servidor" {
   ami           = "ami-0c02fb55956c7d316"
   instance_type = "t3.micro"
 
+  key_name = "mi-clave"
+
   vpc_security_group_ids = [aws_security_group.mi_sg.id]
 
   user_data_replace_on_change = true
