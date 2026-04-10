@@ -1,6 +1,12 @@
 pipeline {
     agent any
 
+    environment {
+        AWS_ACCESS_KEY_ID = credentials('aws-access-key')
+        AWS_SECRET_ACCESS_KEY = credentials('aws-secret-key')
+        AWS_DEFAULT_REGION = 'us-east-1'
+    }
+
     stages {
 
         stage('Instalar dependencias') {
@@ -42,9 +48,11 @@ pipeline {
             }
         }
 
-        stage('Listo para deploy') {
+        stage('Terraform Apply') {
             steps {
-                echo 'Infraestructura validada. Lista para AWS.'
+                dir('infra') {
+                    bat 'terraform apply -auto-approve'
+                }
             }
         }
     }

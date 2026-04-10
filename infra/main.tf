@@ -2,12 +2,12 @@ provider "aws" {
   region = "us-east-1"
 }
 
-# Grupo de seguridad (abre puertos)
+# Grupo de seguridad
 resource "aws_security_group" "mi_sg" {
   name = "mi_sg"
 
   ingress {
-    description = "HTTP app"
+    description = "App Node"
     from_port   = 3001
     to_port     = 3001
     protocol    = "tcp"
@@ -36,6 +36,20 @@ resource "aws_instance" "mi_servidor" {
   instance_type = "t2.micro"
 
   vpc_security_group_ids = [aws_security_group.mi_sg.id]
+
+  user_data = <<-EOF
+              #!/bin/bash
+              yum update -y
+              yum install -y nodejs git
+
+              cd /home/ec2-user
+              git clone https://github.com/JuanPabloJimenezCoy/DevOps_service.git
+
+              cd DevOps_service
+              npm install
+
+              nohup node servicio-vulnerable/app.js > app.log 2>&1 &
+              EOF
 
   tags = {
     Name = "mi-app-node"
