@@ -48,10 +48,26 @@ pipeline {
             }
         }
 
+        stage('Terraform Destroy (refresh)') {
+            steps {
+                dir('infra') {
+                    bat 'terraform destroy -auto-approve'
+                }
+            }
+        }
+
         stage('Terraform Apply') {
             steps {
                 dir('infra') {
                     bat 'terraform apply -auto-approve'
+                }
+            }
+        }
+
+        stage('Mostrar IP pública') {
+            steps {
+                dir('infra') {
+                    bat 'terraform output'
                 }
             }
         }

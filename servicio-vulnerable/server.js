@@ -3,6 +3,7 @@ const path = require('path');
 
 const app = express();
 
+// Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -16,7 +17,6 @@ app.get('/', (req, res) => {
 
 // Login simulado
 app.post('/login', (req, res) => {
-
   const { username, password } = req.body;
 
   const demoUser = "admin";
@@ -27,10 +27,12 @@ app.post('/login', (req, res) => {
   } else {
     res.sendFile(path.join(__dirname, 'views', 'error.html'));
   }
-
 });
 
-// Servidor
-app.listen(3001, () => {
-  console.log('Servidor corriendo en http://localhost:3001');
+// Servidor (CORREGIDO PARA AWS)
+const PORT = 3001;
+const HOST = '0.0.0.0';
+
+app.listen(PORT, HOST, () => {
+  console.log(`Servidor corriendo en http://${HOST}:${PORT}`);
 });

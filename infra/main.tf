@@ -37,6 +37,8 @@ resource "aws_instance" "mi_servidor" {
 
   vpc_security_group_ids = [aws_security_group.mi_sg.id]
 
+  user_data_replace_on_change = true
+
   user_data = <<-EOF
               #!/bin/bash
               yum update -y
